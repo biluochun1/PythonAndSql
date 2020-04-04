@@ -22,11 +22,13 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pkgname // 指定国内�
 ```
 - IDE （Pycharm）开发者工具，一个编译环境，用来写代码，执行代码。
 
+
 ## 常用shell
 ```shell script
 cd Downloads //切换目录
 ls //查看目录
 ```
+
 
 ## 运行第一个程序
 ```shell script
@@ -36,10 +38,12 @@ python main.py
 //2.ide运行 绿色箭头
 ```
 
+
 ## 输出
 ```shell script
 print("")
 ```
+
 
 ## 注释
 ```python
@@ -56,6 +60,13 @@ a = 10;
 //+ - * / 四个运算
 //整形（整数），浮点数（0.5）
 //字符串 支持 + （两个 字符串相加） * num
+s = " zyj and wzj "
+print("s:",s)
+lenth = len(s) #得到s的长度
+print("lenth:",lenth)
+print("s first letter[0]:",s[0]) # 得到s的第一个字母
+s2 = s.strip() #处理字符串的前后（只处理前后）的空格
+print(s2)
 //bool True False
 //查看类型
 b = True
@@ -99,4 +110,3 @@ l1.pop()
 l1.reverse()    #反转
 reversed()
 ```
-
