@@ -92,21 +92,26 @@ print(1 and 0)
 
 
 ## 数据结构
-```python
-# list 
+### list 一个有序的元素集合
+```python 
 # list 每个元素 有 索引 和 值
 l1 = [1,2,3]
 l2 = []
-l2.append(2)
+
+l2.append(2) #添加元素
 l2.append("t") #append 接受的参数是element 元素 
 l3 = l1 + l2 # 两个列表直接相加 然后赋值l3
 l1.extend(l2) #extend 接受的参数是 list ，对l1后累加列表
-# 访问元素
-l1[0]
+
+l1[0]# 访问元素
+
 # list len长度
-len()
+len(l1)
+//计算元素值为1的元素数量
 l1.count(1)
+//弹出最后一个元素
 l1.pop()
+//反转list
 l1.reverse()    #反转
 reversed()
 ```
