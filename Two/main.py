@@ -1,30 +1,32 @@
-if __name__ == '__main__':
-    card_score_dict = {
-        "A": 1,
-        "2": 2,
-        "3": 3,
-        "4": 4,
-        "5": 5,
-        "6": 6,
-        "7": 7,
-        "8": 8,
-        "9": 9,
-        "T": 10,
-        "J": 10,
-        "Q": 10,
-        "K": 10,
-    }  # 存储牌面和对应的分数
-    # hand_card = "K"
-    hand_cards = ["2", "3", "4", "K", "Q"]  # list
-    score = 0
-    for card in hand_cards:
-        score = score + card_score_dict.get(card)
-    print("score:", score)
-    if score > 21:
-        print("lose")
-    else:
-        print("win")
+def get_total_card():
+    d = ["Red Tao", "Black Tao", "Square", "MeiHua"]
+    v = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"]
 
-    while score <= 50:
-        score += 20
-        print(score)
+    total = [i + " " + j for j in v for i in d]
+    print(total)
+
+
+def add(x, y):
+    print(x + y)
+    get_total_card()
+    return x + y
+
+
+def minus(x, y):
+    print(x - y)
+
+
+def get_all_combination(l1, l2):
+    total_res = []
+    for i in l1:
+        for j in l2:
+            total_res.append(i + " " + j)
+    return total_res
+
+
+if __name__ == '__main__':
+    d = ["Red Tao", "Black Tao", "Square", "MeiHua"]
+    v = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"]
+    total_res = get_all_combination(d, v)
+    print(total_res)
+

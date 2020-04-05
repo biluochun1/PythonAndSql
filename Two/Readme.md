@@ -44,10 +44,10 @@ card_score_dict = {
     "K": 10,
 } # 存储牌面和对应的分数
 hand_cards = ["2","3","4"] # list
-for card in hand_cards:
+for card in hand_cards: # 遍历list
     print(card_score_dict.get(card))
 
-for i in range(len(hand_cards)):
+for i in range(len(hand_cards)): # 遍历list（根据长度）
     print(hand_cards[i])
 ```
 ### while...
@@ -55,4 +55,35 @@ for i in range(len(hand_cards)):
 while score <= 50:
     score += 20
     print(score)
+```
+
+### List 遍历
+```python
+for card in hand_cards:
+    score = score + card_score_dict.get(card)
+print("score:", score)
+
+
+for i in range(0,len(hand_cards)): #[0,5)
+    print("i: ",i)
+    score = score + card_score_dict.get(hand_cards[i])
+    print("score:", score)
+```
+
+
+## 函数
+```python
+def add(x, y):
+    print(x + y)
+    return x + y
+
+
+def minus(x, y):
+    print(x - y)
+
+
+if __name__ == '__main__':
+    add_res = add([1, 2], [2, 3])
+    print(add_res)
+
 ```
