@@ -1,3 +1,5 @@
+import simplegui
+
 def get_total_card():
     d = ["Red Tao", "Black Tao", "Square", "MeiHua"]
     v = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"]
@@ -24,9 +26,19 @@ def get_all_combination(l1, l2):
     return total_res
 
 
-if __name__ == '__main__':
-    d = ["Red Tao", "Black Tao", "Square", "MeiHua"]
-    v = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"]
-    total_res = get_all_combination(d, v)
-    print(total_res)
+def cal_height(h, count):
+    d = 0
+    l = []
+    for i in range(0, count):
+        if i == 0:
+            d += h
+        else:
+            d += 2 * h
+        h = h / 2
+        l.append((d, h))
+    return d, l
 
+
+if __name__ == '__main__':
+    print(cal_height(100, 10))
+    print(cal_height(500, 20))
