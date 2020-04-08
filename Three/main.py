@@ -83,10 +83,19 @@ def count_list(l):
 #         return len(f.readlines())
 #
 #
+def count_love(path = "/Users/weizijian/Downloads/PythonTeaching/Three/test.txt"):
+    count_word_dict = {}
+    with open(path,"r") as f:
+        for line in f.readlines():
+            s = line.strip().split(" ")
+            for word in s:
+                if word in count_word_dict:
+                    count_word_dict[word] +=1
+                else:
+                    count_word_dict[word] = 1
+    return count_word_dict
 
 if __name__ == '__main__':
-    path = "///////main.py"
-    # print(count_file_line(path))
-    print(path.find("One"))
+    print(count_love())
 
 
