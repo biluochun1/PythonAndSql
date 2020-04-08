@@ -8,6 +8,8 @@
 # [[0, 0, 0, 0, 0],
 # [0, 1, 2, 3, 4],
 # [0, 2, 4, 6, 8]]
+from collections import Counter
+import itertools
 
 
 def generate_matrix(x, y):
@@ -83,19 +85,24 @@ def count_list(l):
 #         return len(f.readlines())
 #
 #
-def count_love(path = "/Users/weizijian/Downloads/PythonTeaching/Three/test.txt"):
+def count_love(path="/Users/weizijian/Downloads/PythonTeaching/Three/test.txt"):
     count_word_dict = {}
-    with open(path,"r") as f:
+    with open(path, "r") as f:
         for line in f.readlines():
             s = line.strip().split(" ")
             for word in s:
                 if word in count_word_dict:
-                    count_word_dict[word] +=1
+                    count_word_dict[word] += 1
                 else:
                     count_word_dict[word] = 1
     return count_word_dict
 
+
+def count_love_counter(path="/Users/weizijian/Downloads/PythonTeaching/Three/test.txt"):
+    with open(path, "r") as f:
+        return Counter(list(sum([line.strip().split(" ") for line in f.readlines()], [])))
+
+
 if __name__ == '__main__':
-    print(count_love())
-
-
+    l = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]
+    print(count_love_counter())
