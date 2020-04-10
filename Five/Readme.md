@@ -60,6 +60,24 @@ for i in range(len(l)):
   pass #l[i]
 ```
 
+##### List 生成式
+
+```python
+l = []
+for i in range(100):
+  l.append(0)
+  print(l)
+l = [0 for i in range(20)]
+print(l)
+l = [i/(i+1) for i in range(20)]
+print(l)
+l = [[i*j for i in range(4)] for j in range(3)]
+print(l)
+print(l[1][3])
+l = [i / (i + 1) for i in range(20) if i > 5]
+print(l)
+```
+
 #### Dict
 
 ```python
@@ -120,6 +138,4 @@ def wirtefile(path): #如果这个path不存在，那么会新建
     for i in range(3000):
       fw.write("zyj"+" love "+"wzj"+"\n")
 ```
-
-
 
