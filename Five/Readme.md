@@ -98,14 +98,33 @@ for key,val in  d.items():
 ## 控制结构
 
 ```python
+# if
 if condition:
   pass
 
+# if...else
 if condition:
   pass
 else:
   pass
 
+# 集合元素是否存在
+l = [1, 2, 3, 4]
+d = {
+  "wzj": 1,
+  "zyj": 2
+}
+a = 3
+b = "wzj"
+c = "w"
+if a in l:
+  print(a, "exist")
+  if b in d:
+    print(b, "exist")
+    if c not in d:
+      print(c, "not exist")
+      
+# loop
 for i in range(start,end):
 	pass
 ```

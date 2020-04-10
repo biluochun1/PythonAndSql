@@ -29,14 +29,17 @@ def wirte_file(path):  # 如果这个path不存在，那么会新建
 
 
 if __name__ == '__main__':
-    l = []
-    for i in range(100):
-        l.append(0)
-    print(l)
-    l = [i / (i + 1) for i in range(20)]
-    print(l)
-    l = [[i * j for i in range(4)] for j in range(3)]
-    print(l)
-    print(l[1][3])
-    l = [i / (i + 1) for i in range(20) if i > 5]
-    print(l)
+    l = [1, 2, 3, 4]
+    d = {
+        "wzj": 1,
+        "zyj": 2
+    }
+    a = 3
+    b = "wzj"
+    c = "w"
+    if a in l:
+        print(a, "exist")
+    if b in d:
+        print(b, "exist")
+    if c not in d:
+        print(c, "not exist")
