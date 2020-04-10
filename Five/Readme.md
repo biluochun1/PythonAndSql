@@ -119,10 +119,10 @@ b = "wzj"
 c = "w"
 if a in l:
   print(a, "exist")
-  if b in d:
-    print(b, "exist")
-    if c not in d:
-      print(c, "not exist")
+if b in d:
+  print(b, "exist")
+if c not in d:
+  print(c, "not exist")
       
 # loop
 for i in range(start,end):
