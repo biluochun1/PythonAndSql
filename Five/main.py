@@ -1,3 +1,4 @@
+import math
 # average of list
 def average_list(l: list):
     return sum(l) / len(l)
@@ -43,3 +44,5 @@ if __name__ == '__main__':
         print(b, "exist")
     if c not in d:
         print(c, "not exist")
+
+    
