@@ -76,12 +76,19 @@ def get_max_score_zip():
         s = sorted(s, key=lambda e: e["score"], reverse=True)
     return s
 
-def average_score():
+
+def get_average_score():
+    scores = []
     with open("score.txt", "r") as f:
         s = json.loads(f.read())
+        for e in s:
+            scores.append(e["score"])
+    return sum(scores) / len(scores)
 
+
+def get_gpa_score():
+    pass
 
 
 if __name__ == '__main__':
-    max_score_lesson = get_max_score_zip()
-    print(max_score_lesson)
+    print(get_average_score())
