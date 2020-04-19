@@ -1,5 +1,6 @@
 import requests
 import json
+import pandas
 
 cookies = {
     'selectionBar': '125803405',
@@ -87,8 +88,15 @@ def get_average_score():
 
 
 def get_gpa_score():
-    pass
+    scores = []
+    xuefen_list = []
+    with open("score.txt", "r") as f:
+        s = json.loads(f.read())
+        for e in s:
+            scores.append(e["score"] * e["xuefen"])
+            xuefen_list.append(e["xuefen"])
+    return sum(scores) / sum(xuefen_list)
 
 
 if __name__ == '__main__':
-    print(get_average_score())
+    print(get_gpa_score())
