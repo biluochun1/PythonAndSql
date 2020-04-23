@@ -61,9 +61,12 @@ data = pd.date_range("01-01-2020", periods=5).format(formatter=lambda x: x.strft
 print(data)
 
 df2["pop"] = [100, 230, 900]
-df2.index = [4,5,6]
+df2.index = [4, 5, 6]
 
 print(df2)
 print(df1)
 
-print(pd.merge(df2, df1,on="nation"))
+print(pd.merge(df2, df1, on="nation"))
+
+
+# python 所有的东西 都是对象（实例） object  类型叫 class  class创造object过程 实例化
