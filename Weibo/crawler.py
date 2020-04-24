@@ -17,7 +17,7 @@ class WeiBoCrawler:
             ('page', '1'),
         )
         response = requests.get(self.base_url + str(user_id) + '/profile', headers=self.headers, params=params)
-        wbs = self.parse_resp(response=response)
+        wbs = self.parse_profile_resp(response=response)
         return wbs
 
     def get_all_weibo_by_userid(self, user_id):
@@ -32,7 +32,7 @@ class WeiBoCrawler:
                 ('page', str(i)),
             )
             response = requests.get(self.base_url + str(user_id) + '/profile', headers=self.headers, params=params)
-            wbs.extend(self.parse_resp(response=response))
+            wbs.extend(self.parse_profile_resp(response=response))
         return wbs
 
     def get_one_comment_by_weiboid(self, weibo_id):
@@ -41,14 +41,14 @@ class WeiBoCrawler:
         # 评论特别多的情况下 可能有很多页
         comments = []
         num = self.get_page_num(response=response)
-        if num == 1:
-            comments.extend(self.parse_resp(response=response))
+        if num == 1 or num is None:
+            comments.extend(self.parse_comment_resp(response=response))
             return comments
         else:
             for i in range(1, num + 1):
                 url = f"{self.base_url}/comment/{weibo_id}?page={str(i)}"
                 response = requests.get(url, headers=self.headers)
-                comments.extend(self.parse_resp(response=response))
+                comments.extend(self.parse_comment_resp(response=response))
             # comments = self.parse_comment_resp(response)
             return comments
 
@@ -64,7 +64,7 @@ class WeiBoCrawler:
                 all_page = int(all_page)
             return all_page
 
-    def parse_resp(self, response):
+    def parse_profile_resp(self, response):
         """
         解析一个resp结构，即requests.get/post等方法返回的resp，通过lxml解析每条微博内容、点赞数、评论数等
         :param resp: requests.get/post等方法返回的resp

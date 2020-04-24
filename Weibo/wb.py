@@ -19,7 +19,6 @@ class TweetItem():
     video_url = ""  # 视频
     origin_weibo = ""  # 原始微博，只有转发的微博才有这个字段
 
-
 class CommentItem():
     """
     微博评论信息
