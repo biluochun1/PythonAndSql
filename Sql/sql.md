@@ -6,6 +6,8 @@
 
 Structured query language 
 
+https://sqlzoo.net/wiki/
+
 主要是做表查询	表 有字段名 表里面的东西叫纪录 record 存储在服务器上
 
 ### basic
