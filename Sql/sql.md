@@ -1,6 +1,12 @@
 # 2020-04-27
 
-[toc]
+- [2020-04-27](#2020-04-27)
+  * [Sql](#sql)
+    + [basic](#basic)
+    + [Pattern Matching Strings/"Like"](#pattern-matching-strings--like-)
+    + [summary](#summary)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 ## Sql
 
