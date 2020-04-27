@@ -8,15 +8,17 @@ from .wb import TweetItem, CommentItem, extract_weibo_content, extract_comment_c
 
 class WeiBoCrawler:
 
-    def __init__(self, headers=None):
+    def __init__(self, headers=None, cookies=None):
         self.headers = headers
         self.base_url = "https://weibo.cn/"
+        self.cookies = cookies
 
-    def get_first_page_weibo_by_userid(self, user_id):
+    def get_page_weibo_by_userid(self, user_id, page):
         params = (
-            ('page', '1'),
+            ('page', str(page)),
         )
-        response = requests.get(self.base_url + str(user_id) + '/profile', headers=self.headers, params=params)
+        response = requests.get(self.base_url + str(user_id) + '/profile', headers=self.headers, params=params,
+                                cookies=self.cookies)
         wbs = self.parse_profile_resp(response=response)
         return wbs
 
