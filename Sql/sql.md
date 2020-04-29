@@ -231,3 +231,13 @@ GROUP BY continent
 -- 如果对某一列进行了group by 那么select 后面只能跟 该列 或者其他列的各种聚合 （COUNT、MAX、MIN）
 ```
 
+### 顺序
+
+1. **FROM & JOIN**
+2. **WHERE**
+3. **GROUP BY**
+4. **HAVING**
+5. **SELECT**
+6. **ORDER BY**
+7. **LIMIT**
+
