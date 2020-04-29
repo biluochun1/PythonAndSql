@@ -1,13 +1,5 @@
 # 2020-04-27
 
-- [2020-04-27](#2020-04-27)
-  * [Sql](#sql)
-    + [basic](#basic)
-    + [Pattern Matching Strings/"Like"](#pattern-matching-strings--like-)
-    + [summary](#summary)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 ## Sql
 
 Structured query language 
@@ -185,5 +177,57 @@ ROUND(7253.86,-3)    ->  7000
 LENGTH('Hello') -> 5 
 -- 取一个字符串左边n位
 LEFT('Hello world', 4) -> 'Hell'     
+```
+
+# 2020-04-29
+
+### \ 转义字符。
+
+```sql
+select * from nobel where winner = 'EUGENE O\'NEILL'
+-- \ 转义字符。
+```
+
+### order by 表示按某一列排序
+
+```sql
+select column from tabel where condition order by column1,column2... (desc 表示降序）
+-- order by 关键字，表示按某一列排序
+```
+
+### select within select
+
+Select 返回的也是一种表结构
+
+```sql
+SELECT name FROM world
+  WHERE population >
+     (SELECT population FROM world
+      WHERE name='Russia')
+-- List each country name where the population is larger than that of 'Russia'.
+-- 5 Percentages of Germany https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial
+select name, CONCAT(ROUND(epop/gpop*100),'%') from
+(select population as gpop from world where name='Germany') as t1,
+(select name, population as epop from world where continent='Europe' ) as t2
+-- 6 Bigger than every country in Europe
+select name from world where gdp > ALL(select gdp from world where continent ='Europe' and gdp not in ('null'))
+-- 或者
+select name from world where gdp > (select MAX(gdp) from world where continent ='Europe')
+-- 7 Largest in each continent
+SELECT continent, name, area FROM world as x
+  WHERE area >= ALL
+    (SELECT area FROM world as y
+        WHERE y.continent=x.continent
+          AND area>0)
+ 
+```
+
+### group by 分组
+
+```sql
+SELECT continent, MIN(name) AS name
+FROM world 
+GROUP BY continent
+-- 如果对某一列进行了group by 那么select 后面只能跟 该列 或者其他列的各种聚合 （COUNT、MAX、MIN）
 ```
 
