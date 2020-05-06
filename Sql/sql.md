@@ -231,7 +231,7 @@ GROUP BY continent
 -- 如果对某一列进行了group by 那么select 后面只能跟 该列 或者其他列的各种聚合 （COUNT、MAX、MIN）
 ```
 
-### 顺序
+### sql 执行顺序
 
 1. **FROM & JOIN**
 2. **WHERE**
@@ -240,4 +240,129 @@ GROUP BY continent
 5. **SELECT**
 6. **ORDER BY**
 7. **LIMIT**
+
+# 2020-04-30
+
+### 去重
+
+```sql
+SELECT DISTINCT region FROM bbc
+-- distinct column_name
+```
+
+### 聚集函数
+
+#### SUM求和
+
+```sql
+SELECT SUM(population), SUM(gdp)
+  FROM bbc
+  WHERE region = 'Europe'
+-- 统计了欧洲的总人口，总gdp
+```
+
+#### COUNT计数
+
+```sql
+SELECT COUNT(population)
+  FROM bbc
+  WHERE region = 'Europe'
+```
+
+#### MAX、MIN最值
+
+```sql
+SELECT MAX(population)
+  FROM bbc
+  WHERE region = 'Europe'
+```
+
+#### AVG求平均
+
+```sql
+SELECT AVG(population)
+  FROM bbc
+  WHERE region = 'Europe'
+```
+
+### Using GROUP BY and HAVING
+
+By including a `GROUP BY` clause functions such as `SUM` and `COUNT` are applied to groups of items sharing values. When you specify `GROUP BY continent` the result is that you get only one row for each different value of `continent`. All the other columns must be "aggregated" by one of `SUM`, `COUNT` ...
+
+The `HAVING` clause allows use to filter the groups which are displayed. The `WHERE` clause filters rows before the aggregation, the `HAVING` clause filters after the aggregation.
+
+If a `ORDER BY` clause is included we can refer to columns by their position.
+
+```sql
+-- For each continent show the number of countries:
+SELECT continent, COUNT(name)
+  FROM world
+ GROUP BY continent
+-- For each continent show the total population:
+SELECT continent, SUM(population)
+  FROM world
+ GROUP BY continent
+-- **WHERE and GROUP BY. The WHERE filter takes place before the aggregating function.**
+-- For each relevant continent show the number of countries that has a population of at least 200000000.
+SELECT continent, COUNT(name)
+  FROM world
+ WHERE population>200000000
+ GROUP BY continent
+-- **GROUP BY and HAVING. The HAVING clause is tested after the GROUP BY.**
+-- Show the total population of those continents with a total population of at least half a billion.
+SELECT continent, SUM(population)
+  FROM world
+ GROUP BY continent
+HAVING SUM(population)>500000000
+```
+
+
+
+# The JOIN operation
+
+game table
+
+| id   | mdate        | stadium                   | team1 | team2 |
+| :--- | :----------- | :------------------------ | :---- | :---- |
+| 1001 | 8 June 2012  | National Stadium, Warsaw  | POL   | GRE   |
+| 1002 | 8 June 2012  | Stadion Miejski (Wroclaw) | RUS   | CZE   |
+| 1003 | 12 June 2012 | Stadion Miejski (Wroclaw) | GRE   | CZE   |
+| 1004 | 12 June 2012 | National Stadium, Warsaw  | POL   | RUS   |
+
+goal table
+
+| matchid | teamid | player               | gtime |
+| :------ | :----- | :------------------- | :---- |
+| 1001    | POL    | Robert Lewandowski   | 17    |
+| 1001    | GRE    | Dimitris Salpingidis | 51    |
+| 1002    | RUS    | Alan Dzagoev         | 15    |
+| 1002    | RUS    | Roman Pavlyuchenko   | 82    |
+
+eteam table
+
+| id   | teamname       | coach            |
+| :--- | :------------- | :--------------- |
+| POL  | Poland         | Franciszek Smuda |
+| RUS  | Russia         | Dick Advocaat    |
+| CZE  | Czech Republic | Michal Bilek     |
+| GRE  | Greece         | Fernando Santos  |
+
+
+
+```sql
+SELECT *
+  FROM game JOIN goal ON (id=matchid)
+```
+
+| id   | mdate       | stadium                  | team1 | team2 | matchid | teamid | player               | gtime |
+| ---- | ----------- | ------------------------ | ----- | ----- | ------- | ------ | -------------------- | ----- |
+| 1001 | 8 June 2012 | National Stadium, Warsaw | POL   | GRE   | 1001    | POL    | Robert Lewandowski   | 17    |
+| 1001 | 8 June 2012 | National Stadium, Warsaw | POL   | GRE   | 1001    | GRE    | Dimitris Salpingidis | 51    |
+
+```sql
+SELECT player, teamid ,stadium, mdate
+FROM game JOIN goal ON (id=matchid)
+WHERE teamid = "GER"
+-- show the player, teamid, stadium and mdate for every German goal.
+```
 
